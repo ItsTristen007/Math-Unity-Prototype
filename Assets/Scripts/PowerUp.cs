@@ -9,10 +9,15 @@ public class PowerUp : MonoBehaviour
 
     private int spot;
 
+    private float playerX;
+    private float playerY;
+
     public Sprite cookie, gummybear, licorice, donut, lollipop, mushroom;
     
     public void Activate()
     {
+        
+        
         switch (name)
         {
             case "cookie":
@@ -38,8 +43,9 @@ public class PowerUp : MonoBehaviour
 
     private void Update()
     {
-        gameObject.transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x,
-            GameObject.FindWithTag("Player").transform.position.y+(.25f+spot*3f/4f), -1);
+        playerX = GameObject.FindWithTag("Player").transform.position.x;
+        playerY = GameObject.FindWithTag("Player").transform.position.y + (.25f + spot * 3f / 4f);
+        gameObject.transform.position = new Vector3(playerX, playerY, -1);
     }
 
     public void SetSpot(int spot)

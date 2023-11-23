@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
     private GameObject Create(string name, int spot)
     {
         Debug.Log(spot);
-        GameObject obj = Instantiate(powerup, new Vector3(0,0, -1), Quaternion.identity);
+        GameObject obj = Instantiate(powerup, new Vector3(gameObject.transform.position.x-spot,gameObject.transform.position.y, 0), Quaternion.identity);
         PowerUp pu = obj.GetComponent<PowerUp>();
         pu.name = name;
         pu.SetSpot(spot);
@@ -122,8 +122,10 @@ public class Player : MonoBehaviour
         return obj;
     }
 
-    private void UsePowerUp()
+    public void UsePowerUp()
     {
+        GameObject obj = GameObject.FindGameObjectWithTag("Brick");
+        Blocks bl = obj.GetComponent<Blocks>();
         for (int i = PUQueue.Length-1; i < PUQueue.Length; i--)
         {
             if (PUQueue[i] != null)
@@ -131,7 +133,40 @@ public class Player : MonoBehaviour
                 switch (PUQueue[i])
                 {
                     case "cookie":
-                        
+                        bl.alter("cookie");
+                        Destroy(GameObject.Find("cookie"));
+                        PUQueue[i] = null;
+                        PUFollow[i] = null;
+                        break;
+                    case "gummybear":
+                        bl.alter("gummybear");
+                        Destroy(GameObject.Find("gummybear"));
+                        PUQueue[i] = null;
+                        PUFollow[i] = null;
+                        break;
+                    case "licorice":
+                        bl.alter("licorice");
+                        Destroy(GameObject.Find("licorice"));
+                        PUQueue[i] = null;
+                        PUFollow[i] = null;
+                        break;
+                    case "donut":
+                        bl.alter("donut");
+                        Destroy(GameObject.Find("donut"));
+                        PUQueue[i] = null;
+                        PUFollow[i] = null;
+                        break;
+                    case "lollipop":
+                        bl.alter("lollipop");
+                        Destroy(GameObject.Find("lollipop"));
+                        PUQueue[i] = null;
+                        PUFollow[i] = null;
+                        break;
+                    case "mushroom":
+                        bl.alter("mushroom");
+                        Destroy(GameObject.Find("mushroom"));
+                        PUQueue[i] = null;
+                        PUFollow[i] = null;
                         break;
                 }
 

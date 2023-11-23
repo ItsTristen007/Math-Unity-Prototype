@@ -21,6 +21,11 @@ public static class InputManager
         {
             myPlayer.jump();
         };
+        
+        _gameControls.InGame.Click.started += hi =>
+        {
+            myPlayer.UsePowerUp();
+        };
 
     }
 
